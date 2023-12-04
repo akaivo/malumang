@@ -1,0 +1,17 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "answers": ["Paris", "London", "Rome", "Berlin"],
+    "correct": 0
+  },
+  {
+    "question": "What is the largest planet in our Solar System?",
+    "answers": ["Earth", "Venus", "Jupiter", "Mars"],
+    "correct": 2
+  },
+  {
+    "question": "Kes elab metsa sees?",
+    "answers": ["Karu Ott", "Siilipoiss", "Päkapikk", "Reinuvader Rebane"],
+    "correct": 2
+  }
+]
