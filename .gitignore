@@ -1,0 +1,11 @@
+.vscode/
+__pycache__/
+index.html
+localhost-key.pem
+localhost.pem
+quiz2.py
+reactive.py
+reactive_test.py
+script.js
+server.py
+style.css

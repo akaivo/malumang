@@ -1,3 +1,4 @@
+import datetime
 import tkinter as tk
 
 from reactivex import Subject
@@ -44,19 +45,27 @@ class QuestionScreen(tk.Frame):
         y = 0.5 * h + 0.5 * PADDING
 
         self.answer_1 = tk.Label(answers, text=f"Vastus 1", bg='white')
-        self.answer_1.bind('<Button-1>', lambda _: answer_subject.on_next(1))
+        self.answer_1.bind('<Button-1>', lambda _: answer_subject.on_next(
+            { 'answer': 0, 'timestamp': datetime.datetime.now()})
+        )
         self.answer_1.place(x=0, y=0, height=0.5*(h - PADDING), width=0.5*(w - PADDING))
 
         self.answer_2 = tk.Label(answers, text=f"Vastus 2", bg='white')
-        self.answer_2.bind('<Button-1>', lambda _: answer_subject.on_next(2))
+        self.answer_2.bind('<Button-1>', lambda _: answer_subject.on_next(
+            { 'answer': 1, 'timestamp': datetime.datetime.now()})
+        )
         self.answer_2.place(x=(0.5*w + 0.5*PADDING), y=0, height=0.5*(h - PADDING), width=0.5*(w - PADDING))
 
         self.answer_3 = tk.Label(answers, text=f"Vastus 3", bg='white')
-        self.answer_3.bind('<Button-1>', lambda _: answer_subject.on_next(3))
+        self.answer_3.bind('<Button-1>', lambda _: answer_subject.on_next(
+            { 'answer': 2, 'timestamp': datetime.datetime.now()})
+        )
         self.answer_3.place(x=0, y=(0.5*h + 0.5*PADDING), height=0.5*(h - PADDING), width=0.5*(w - PADDING))
 
         self.answer_4 = tk.Label(answers, text=f"Vastus 4", bg='white')
-        self.answer_4.bind('<Button-1>', lambda _: answer_subject.on_next(4))
+        self.answer_4.bind('<Button-1>', lambda _: answer_subject.on_next(
+            { 'answer': 3, 'timestamp': datetime.datetime.now()})
+        )
         self.answer_4.place(x=(0.5*w + 0.5*PADDING), y=(0.5*h + 0.5*PADDING), height=0.5*(h - PADDING), width=0.5*(w - PADDING))
     
     def fill_question(self, question):
