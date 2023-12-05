@@ -13,5 +13,10 @@
     "question": "Kes elab metsa sees?",
     "answers": ["Karu Ott", "Siilipoiss", "Päkapikk", "Reinuvader Rebane"],
     "correct": 2
+  },
+  {
+    "question": "Kui pikk on lodi Jõmmu?",
+    "answers": ["10 m", "12 m", "15 m", "16 m"],
+    "correct": 1
   }
 ]

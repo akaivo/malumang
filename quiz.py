@@ -32,7 +32,10 @@ games_observable = app.restart_subject.pipe(
     ops.start_with(None),
     ops.do_action(on_next=lambda _questions: app.show_frame(StartScreen)),
     ops.map(lambda _: load_questions("questions.json")),
-    ops.map(lambda questions: random.sample(questions, len(questions)))
+    ops.map(lambda questions: random.sample(questions, len(questions))),
+    ops.map(lambda questions: [
+        {**question, 'is_last': index == len(questions) - 1} for index, question in enumerate(questions)
+    ])
 )
 
 next_question_subject = Subject()
@@ -43,10 +46,10 @@ question_observable = games_observable.pipe(
     ops.map(lambda q: { **q, 'timestamp': datetime.datetime.now()})
 )
 
-def check_question(pair):
-    print(pair)
-    next_question_subject.on_next(None)
-
+question_observable.subscribe(
+  on_next=print,
+  scheduler=scheduler  
+)
 question_observable.subscribe(
   on_next=app.display_question,
   scheduler=scheduler  
@@ -57,14 +60,30 @@ def is_new_answer(qa):
     answer = qa[1]
     return answer['timestamp'] > question['timestamp']
 
-app.answer_subject.subscribe(on_next=print, scheduler=scheduler)
-question_observable.subscribe(on_next=print, scheduler=scheduler)
+answer_observable = rx.combine_latest(question_observable, app.answer_subject).pipe(
+    ops.filter(is_new_answer),
+    ops.do_action(print)
+)
 
-rx.combine_latest(question_observable, app.answer_subject).pipe(
-    ops.filter(is_new_answer)
+answer_observable.pipe(
+    ops.delay(1)
 ).subscribe(
-    on_next=wrap("check", check_question),
-    on_completed=lambda: app.show_frame(ScoreScreen),
+    on_next=(lambda _: next_question_subject.on_next(None)),
     scheduler=scheduler  
+)
+
+def check_answer(qa_pair):
+    q, a = qa_pair
+    return q["correct"] == a["answer"]
+
+correct_answers, wrong_answers = answer_observable.pipe(ops.partition(check_answer))
+
+correct_answers.subscribe(
+    on_next=lambda qa: print(f"Correct: {qa[0]['question']} - {qa[0]['answers'][qa[1]['answer']]}"),
+    scheduler=scheduler
+)
+wrong_answers.subscribe(
+    on_next=lambda qa: print(f"Wrong: {qa[0]['question']} - {qa[0]['answers'][qa[1]['answer']]}"),
+    scheduler=scheduler
 )
 app.mainloop()
