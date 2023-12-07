@@ -109,6 +109,8 @@ class QuizApp(tk.Tk):
         self.bind('<Escape>', lambda x: self.destroy())
         self.bind('1', lambda _: self.restart_game())
 
+        self.update_idletasks()
+
         self.frames = {}
         frame = StartScreen(parent=self, start_callback=self.start_game)
         self.frames[StartScreen] = frame
