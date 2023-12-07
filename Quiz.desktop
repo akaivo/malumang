@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Barge Quiz
+Comment=Autostart the quiz
+Exec=/usr/bin/python /home/aadamkaivo/malumang/ui.py
