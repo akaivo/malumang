@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import font as tkFont
 
 from game import Game
+from physical_buttons import PhysicalButtons
 
 PADDING = 10
 BG = "green"
@@ -24,7 +25,7 @@ class StartScreen(tk.Frame):
             width=parent.winfo_width() - 2*PADDING,
             height=parent.winfo_height() - 2*PADDING
         )
-
+    
 class QuestionScreen(tk.Frame):
     def __init__(self, parent, answer_callback):
         tk.Frame.__init__(self, parent, bg=BG)
@@ -83,7 +84,7 @@ class QuestionScreen(tk.Frame):
         if(given_answer != correct_answer):
             self.answers[given_answer].configure(bg="red")
         return self
-    
+           
 class ScoreScreen(tk.Frame):
     def __init__(self, parent, restart_callback):
         tk.Frame.__init__(self, parent, bg=BG)
@@ -103,6 +104,7 @@ class QuizApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.game = Game()
+        self.buttons = PhysicalButtons()
         self.answer_locked = False
 
         self.attributes("-fullscreen", True)
@@ -160,7 +162,22 @@ class QuizApp(tk.Tk):
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
+        self.set_buttons(cont)
         return frame
     
+    def set_buttons(self, cont):
+        if cont == StartScreen:
+            self.buttons.set_all(self.start_game)
+        elif cont == QuestionScreen:
+            self.buttons.set(0, self.restart_game)
+            self.buttons.set(1, lambda _: self.check_answer(0))
+            self.buttons.set(2, lambda _: self.check_answer(1))
+            self.buttons.set(3, lambda _: self.check_answer(2))
+            self.buttons.set(4, lambda _: self.check_answer(3))
+        elif cont == ScoreScreen:
+            self.buttons.set_all(self.restart_game)
+        else:
+            raise ValueError("No such screen")
+            
 app = QuizApp()
 app.mainloop()
