@@ -1,22 +1,72 @@
 [
   {
-    "question": "What is the capital of France?",
-    "answers": ["Paris", "London", "Rome", "Berlin"],
+    "question": "Mis aastal asutati Emajõe Lodjaselts?",
+    "answers": ["2004", "2006", "2009", "2013"],
     "correct": 0
   },
   {
-    "question": "What is the largest planet in our Solar System?",
-    "answers": ["Earth", "Venus", "Jupiter", "Mars"],
-    "correct": 2
-  },
-  {
-    "question": "Kes elab metsa sees?",
-    "answers": ["Karu Ott", "Siilipoiss", "Päkapikk", "Reinuvader Rebane"],
-    "correct": 2
-  },
-  {
     "question": "Kui pikk on lodi Jõmmu?",
-    "answers": ["10 m", "12 m", "15 m", "16 m"],
+    "answers": ["12 m", "22 m", "30 m", "35 m"],
+    "correct": 0
+  },
+  {
+    "question": "Millist tüüpi laev on Turm?",
+    "answers": ["Raudlaev", "Kahemastiline lodi", "Viikingilaev", "Praam"],
+    "correct": 2
+  },
+  {
+    "question": "Millal valmis Lodjakoda?",
+    "answers": ["2016", "2019", "2020", "2021"],
+    "correct": 2
+  },
+  {
+    "question": "Milline laev on Peipsi järvistu ainuke kaubalaev?",
+    "answers": ["Vanemuine", "Peipsi 1", "Koit", "Jõmmu"],
+    "correct": 2
+  },
+  {
+    "question": "Mis on Peipsi järve pindala?",
+    "answers": ["3555 km²", "4000 km²", "3000 km²", "2500 km²"],
+    "correct": 0
+  },
+  {
+    "question": "Milline jõgi voolab välja Peipsi järvest?",
+    "answers": ["Emajõgi", "Narva jõgi", "Võhandu jõgi", "Pärnu jõgi"],
     "correct": 1
+  },
+  {
+    "question": "Mis aastal ehitati Emajõele Baltimaade esimene ratasaurik Juliane Clementine?",
+    "answers": ["1702", "1843", "1944", "1964"],
+    "correct": 1
+  },
+  {
+    "question": "Millest on tehtud uue lodja täävid?",
+    "answers": ["Männipuidust", "Tammepuidust", "Lehisepuidust", "Kasepuidust"],
+    "correct": 1
+  },
+  {
+    "question": "Mis materjalist on Lodjakoja klotspõrand?",
+    "answers": ["Betoon", "Keraamilised plaadid", "Tammepuit", "Terrakota"],
+    "correct": 2
+  },
+  {
+    "question": "Kui pikk on Emajõgi?",
+    "answers": ["50 km", "100 km", "150 km", "200 km"],
+    "correct": 1
+  },
+  {
+    "question": "Mis aastal alustati Lodjakojas kahemastilise peipsi lodja ehitust?",
+    "answers": ["2019", "2020", "2021", "2022"],
+    "correct": 3
+  },
+  {
+    "question": "Millal lasti vette viikingilaev Turm?",
+    "answers": ["2004", "2006", "2009", "2013"],
+    "correct": 2
+  },
+  {
+    "question": "Kui sügav on Peipsi järve sügavaim koht?",
+    "answers": ["7 m", "10 m", "15 m", "20 m"],
+    "correct": 2
   }
 ]
