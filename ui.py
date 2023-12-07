@@ -29,7 +29,12 @@ class StartScreen(tk.Frame):
 class QuestionScreen(tk.Frame):
     def __init__(self, parent, answer_callback):
         tk.Frame.__init__(self, parent, bg=BG)
-        self.question_label = tk.Label(self, text="Küsimus", bg='white')
+        self.question_label = tk.Label(
+            self,
+            text="Küsimus",
+            bg='white',
+            font=tkFont.Font(family=FONT, size=FONT_SIZE)
+        )
         self.question_label.place(
            x=PADDING,
            y=PADDING,
@@ -50,22 +55,22 @@ class QuestionScreen(tk.Frame):
         y = 0.5 * h + 0.5 * PADDING
 
         self.answers = []
-        answer_1 = tk.Label(answers_frame, text=f"Vastus 1", bg='white')
+        answer_1 = tk.Label(answers_frame, text=f"Vastus 1", bg='white', font=tkFont.Font(family=FONT, size=FONT_SIZE))
         answer_1.bind('<Button-1>', lambda _: answer_callback(0))
         answer_1.place(x=0, y=0, height=0.5*(h - PADDING), width=0.5*(w - PADDING))
         self.answers.append(answer_1)
 
-        answer_2 = tk.Label(answers_frame, text=f"Vastus 2", bg='white')
+        answer_2 = tk.Label(answers_frame, text=f"Vastus 2", bg='white', font=tkFont.Font(family=FONT, size=FONT_SIZE))
         answer_2.bind('<Button-1>', lambda _: answer_callback(1))
         answer_2.place(x=(0.5*w + 0.5*PADDING), y=0, height=0.5*(h - PADDING), width=0.5*(w - PADDING))
         self.answers.append(answer_2)
 
-        answer_3 = tk.Label(answers_frame, text=f"Vastus 3", bg='white')
+        answer_3 = tk.Label(answers_frame, text=f"Vastus 3", bg='white', font=tkFont.Font(family=FONT, size=FONT_SIZE))
         answer_3.bind('<Button-1>', lambda _: answer_callback(2))
         answer_3.place(x=0, y=(0.5*h + 0.5*PADDING), height=0.5*(h - PADDING), width=0.5*(w - PADDING))
         self.answers.append(answer_3)
 
-        answer_4 = tk.Label(answers_frame, text=f"Vastus 4", bg='white')
+        answer_4 = tk.Label(answers_frame, text=f"Vastus 4", bg='white', font=tkFont.Font(family=FONT, size=FONT_SIZE))
         answer_4.bind('<Button-1>', lambda _: answer_callback(3))
         answer_4.place(x=(0.5*w + 0.5*PADDING), y=(0.5*h + 0.5*PADDING), height=0.5*(h - PADDING), width=0.5*(w - PADDING))
         self.answers.append(answer_4)
@@ -88,7 +93,7 @@ class QuestionScreen(tk.Frame):
 class ScoreScreen(tk.Frame):
     def __init__(self, parent, restart_callback):
         tk.Frame.__init__(self, parent, bg=BG)
-        self.score_label = tk.Label(self, text="Sinu punktid: 10/10 !")
+        self.score_label = tk.Label(self, text="Sinu punktid: 10/10 !", font=tkFont.Font(family=FONT, size=FONT_SIZE))
         self.score_label.place(
             x=PADDING,
             y=PADDING,
