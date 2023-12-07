@@ -1,10 +1,12 @@
 import json
 import random
-
+import os
 
 class Game:
   def __init__(self):
-    self.__questions = self.load_questions("questions.json")
+    file_dir = os.path.dirname(__file__)
+    abs_file_path = os.path.join(file_dir, "questions.json")
+    self.__questions = self.load_questions(abs_file_path)
     random.shuffle(self.__questions)
     self.__current_question_index = 0
     self.__total = len(self.__questions)
