@@ -167,17 +167,20 @@ class QuizApp(tk.Tk):
     
     def set_buttons(self, cont):
         if cont == StartScreen:
-            self.buttons.set_all(self.start_game)
+            self.buttons.set_all(self.wrap_call(self.start_game))
         elif cont == QuestionScreen:
-            self.buttons.set(0, self.restart_game)
-            self.buttons.set(1, lambda _: self.check_answer(0))
-            self.buttons.set(2, lambda _: self.check_answer(1))
-            self.buttons.set(3, lambda _: self.check_answer(2))
-            self.buttons.set(4, lambda _: self.check_answer(3))
+            self.buttons.set(0, self.wrap_call(self.restart_game))
+            self.buttons.set(1, self.wrap_call(lambda: self.check_answer(0)))
+            self.buttons.set(2, self.wrap_call(lambda: self.check_answer(1)))
+            self.buttons.set(3, self.wrap_call(lambda: self.check_answer(2)))
+            self.buttons.set(4, self.wrap_call(lambda: self.check_answer(3)))
         elif cont == ScoreScreen:
-            self.buttons.set_all(self.restart_game)
+            self.buttons.set_all(self.wrap_call(self.restart_game))
         else:
             raise ValueError("No such screen")
-            
+    
+    def wrap_call(self, callback):
+        return lambda: self.after(0, callback)
+
 app = QuizApp()
 app.mainloop()
