@@ -113,7 +113,12 @@ class QuestionScreen(tk.Frame):
 class ScoreScreen(tk.Frame):
     def __init__(self, parent, restart_callback):
         tk.Frame.__init__(self, parent, bg=BG)
-        self.score_label = tk.Label(self, text="Sinu punktid: 10/10 !", font=tkFont.Font(family=FONT, size=FONT_SIZE))
+        self.score_label = tk.Label(
+            self,
+            text="Sinu punktid: 10/10 !",
+            bg="white",
+            font=tkFont.Font(family=FONT, size=FONT_SIZE)
+        )
         self.score_label.place(
             x=PADDING,
             y=PADDING,
