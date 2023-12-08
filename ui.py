@@ -2,29 +2,49 @@ import tkinter as tk
 from tkinter import font as tkFont
 
 from game import Game
+from languages import languages
 from physical_buttons import PhysicalButtons
 
 PADDING = 10
 BG = "green"
 QUESTION_DELAY = 1000
 FONT = "Helvetica"
-FONT_SIZE = 24
+FONT_SIZE = 32
 
 class StartScreen(tk.Frame):
-    def __init__(self, parent, start_callback):
+    def __init__(self, parent, start_callback, next_language_callback):
         tk.Frame.__init__(self, parent, bg=BG)
-        start_button = tk.Button(
+        self.start_button = tk.Label(
             self, text="Alusta mängu!",
-            command=start_callback,
             relief=tk.FLAT,
+            bg="white",
             font=tkFont.Font(family=FONT, size=FONT_SIZE)
         )
-        start_button.place(
+        self.start_button.bind("<Button-1>", lambda _: start_callback())
+        self.start_button.place(
             x=PADDING,
             y=PADDING,
             width=parent.winfo_width() - 2*PADDING,
             height=parent.winfo_height() - 2*PADDING
         )
+
+        self.language_button = tk.Label(
+            self, text="est",
+            relief=tk.FLAT,
+            bg="white",
+            font=tkFont.Font(family=FONT, size=FONT_SIZE)
+        )
+        self.language_button.bind("<Button-1>", lambda _: next_language_callback())
+        self.language_button.place(
+            x=parent.winfo_width() * 1 - parent.winfo_height() * 0.125,
+            y=parent.winfo_height() * (1 - 0.125),
+            width=parent.winfo_height() * 0.124 - PADDING,
+            height=parent.winfo_height() * 0.124 - PADDING
+        )
+
+    def set_language(self, new_language):
+        self.start_button.configure(text=languages[new_language]['start_game'])
+        self.language_button.configure(text=languages[new_language]['lang'])
     
 class QuestionScreen(tk.Frame):
     def __init__(self, parent, answer_callback):
@@ -102,13 +122,14 @@ class ScoreScreen(tk.Frame):
         )
         self.score_label.bind("<Button-1>", lambda x: restart_callback())
 
-    def update(self, score, total):
-        self.score_label.configure(text=f"Sinu punktid: {score}/{total} !")
+    def update(self, score, total, current_language):
+        self.score_label.configure(text=f"{languages[current_language]['your_score']} {score}/{total} !")
 
 class QuizApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        self.game = Game()
+        self.current_language = 'estonian'
+        self.game = Game(self.current_language)
         self.buttons = PhysicalButtons()
         self.answer_locked = False
 
@@ -119,7 +140,7 @@ class QuizApp(tk.Tk):
         self.update_idletasks()
 
         self.frames = {}
-        frame = StartScreen(parent=self, start_callback=self.start_game)
+        frame = StartScreen(parent=self, start_callback=self.start_game, next_language_callback=self.next_language)
         self.frames[StartScreen] = frame
         frame.place(relx=0, rely=0, relheight=1, relwidth=1)
         
@@ -135,10 +156,10 @@ class QuizApp(tk.Tk):
         self.show_frame(StartScreen)
 
     def restart_game(self):
-        self.game = Game()
         self.show_frame(StartScreen)
 
     def start_game(self):
+        self.game = Game(self.current_language)
         self.display_question(self.game.current_question())
     
     def next_question(self):
@@ -162,7 +183,7 @@ class QuizApp(tk.Tk):
 
     def show_score(self):
         score, total = self.game.result()
-        self.show_frame(ScoreScreen).update(score, total)
+        self.show_frame(ScoreScreen).update(score, total, self.current_language)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -173,6 +194,7 @@ class QuizApp(tk.Tk):
     def set_buttons(self, cont):
         if cont == StartScreen:
             self.buttons.set_all(self.wrap_call(self.start_game))
+            self.buttons.set(4, self.wrap_call(lambda: self.next_language()))
         elif cont == QuestionScreen:
             self.buttons.set(0, self.wrap_call(self.restart_game))
             self.buttons.set(1, self.wrap_call(lambda: self.check_answer(0)))
@@ -186,6 +208,14 @@ class QuizApp(tk.Tk):
     
     def wrap_call(self, callback):
         return lambda: self.after(0, callback)
+    
+    def next_language(self):
+        if self.current_language == 'estonian':
+            self.current_language = 'english'
+        else:
+            self.current_language = 'estonian'
+
+        self.frames[StartScreen].set_language(self.current_language)
 
 app = QuizApp()
 app.mainloop()

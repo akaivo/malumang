@@ -1,0 +1,72 @@
+[
+  {
+    "question": "In which year was the Emajõe Barge Association founded?",
+    "answers": ["2004", "2006", "2009", "2013"],
+    "correct": 0
+  },
+  {
+    "question": "How long is barge Jõmmu?",
+    "answers": ["12 m", "22 m", "30 m", "35 m"],
+    "correct": 0
+  },
+  {
+    "question": "What type of ship is Turm?",
+    "answers": ["An iron ship", "Two-masted Peipus barge", "A Viking Ship", "A Ferry"],
+    "correct": 2
+  },
+  {
+    "question": "When was the Barge Hall completed?",
+    "answers": ["2016", "2019", "2020", "2021"],
+    "correct": 2
+  },
+  {
+    "question": "Which is the only cargo ship on Peipsi Lakes?",
+    "answers": ["Vanemuine", "Peipsi 1", "Koit", "Jõmmu"],
+    "correct": 2
+  },
+  {
+    "question": "What is the area of Peipsi lake?",
+    "answers": ["3555 km²", "4000 km²", "3000 km²", "2500 km²"],
+    "correct": 0
+  },
+  {
+    "question": "Which river flows out of Lake Peipsi?",
+    "answers": ["River Emajõgi", "Narva river", "Võhandu river", "Pärnu river"],
+    "correct": 1
+  },
+  {
+    "question": "In which year did the Baltic States first paddle steamer Juliane Clementine start sailing on Emajõgi River?",
+    "answers": ["1702", "1843", "1944", "1964"],
+    "correct": 1
+  },
+  {
+    "question": "What are the new barge stem and stern posts made of?",
+    "answers": ["Pine wood", "Oak wood", "Larch wood", "Birch wood"],
+    "correct": 1
+  },
+  {
+    "question": "The floor of Lodjakoda made of what?",
+    "answers": ["Concrete", "Ceramic tiles", "Oak wood", "Terracotta"],
+    "correct": 2
+  },
+  {
+    "question": "How long is the river Emajõgi?",
+    "answers": ["50 km", "100 km", "150 km", "200 km"],
+    "correct": 1
+  },
+  {
+    "question": "In which year did the construction of a two-masted Peipsi barge start in the Barge Hall?",
+    "answers": ["2019", "2020", "2021", "2022"],
+    "correct": 3
+  },
+  {
+    "question": "When was the Viking ship Turm launched?",
+    "answers": ["2004", "2006", "2009", "2013"],
+    "correct": 2
+  },
+  {
+    "question": "How deep is the deepest point in Lake Peipsi?",
+    "answers": ["7 m", "10 m", "15 m", "20 m"],
+    "correct": 2
+  }
+]

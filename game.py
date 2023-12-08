@@ -1,11 +1,12 @@
 import json
-import random
 import os
+import random
+
 
 class Game:
-  def __init__(self):
+  def __init__(self, current_language):
     file_dir = os.path.dirname(__file__)
-    abs_file_path = os.path.join(file_dir, "questions.json")
+    abs_file_path = os.path.join(file_dir, f"questions_{current_language}.json")
     self.__questions = self.load_questions(abs_file_path)
     random.shuffle(self.__questions)
     self.__current_question_index = 0
